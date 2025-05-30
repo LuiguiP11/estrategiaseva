@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - La Técnica OMIARO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - La Técnica OMIARO</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Qué es la Técnica OMIARO según su definición principal en el documento?</p>
+      <label><input type="radio" name="q1" value="A"> A) Un método para memorizar textos rápidamente.</label>
+      <label><input type="radio" name="q1" value="B"> B) Un método de aprendizaje que fortalece el proceso de enseñanza-aprendizaje.</label>
+      <label><input type="radio" name="q1" value="C"> C) Una herramienta exclusiva para el área de Matemáticas.</label>
+      <label><input type="radio" name="q1" value="D"> D) Una técnica de evaluación formativa para docentes.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Cuáles son los procesos mentales que la Técnica OMIARO permite desarrollar?</p>
+      <label><input type="radio" name="q2" value="A"> A) Cálculo, síntesis, inferencia, deducción, clasificación y evaluación.</label>
+      <label><input type="radio" name="q2" value="B"> B) Observación, memoria comprensiva, imaginación creativa, análisis, reflexión y opinión personal.</label>
+      <label><input type="radio" name="q2" value="C"> C) Recopilación, organización, presentación, debate, argumentación y conclusión.</label>
+      <label><input type="radio" name="q2" value="D"> D) Investigación, experimentación, formulación de hipótesis, comprobación, discusión y reporte.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿En qué taxonomía se fundamentan los procesos mentales de OMIARO?</p>
+      <label><input type="radio" name="q3" value="A"> A) Taxonomía de Bloom.</label>
+      <label><input type="radio" name="q3" value="B"> B) Taxonomía de Robert Marzano.</label>
+      <label><input type="radio" name="q3" value="C"> C) Taxonomía de Benjamin Franklin.</label>
+      <label><input type="radio" name="q3" value="D"> D) Taxonomía de Jean Piaget.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. La fase de Observación puede ser directa o indirecta. ¿Cuál de las siguientes es un ejemplo de observación indirecta?</p>
+      <label><input type="radio" name="q4" value="A"> A) Identificación de características de un objeto en persona.</label>
+      <label><input type="radio" name="q4" value="B"> B) Observar hechos o eventos en tiempo real.</label>
+      <label><input type="radio" name="q4" value="C"> C) La lectura de libros, revistas o periódicos.</label>
+      <label><input type="radio" name="q4" value="D"> D) Interactuar con objetos y personas para detectar cambios.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Qué técnica NO se menciona para trabajar la fase de Observación?</p>
+      <label><input type="radio" name="q5" value="A"> A) Técnica del subrayado.</label>
+      <label><input type="radio" name="q5" value="B"> B) Técnica del glosario.</label>
+      <label><input type="radio" name="q5" value="C"> C) Técnica de la lluvia de ideas.</label>
+      <label><input type="radio" name="q5" value="D"> D) Lectura exploratoria.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. En la fase de Memoria, ¿cuál de estas técnicas se utiliza para conocer los aspectos y definiciones más importantes?</p>
+      <label><input type="radio" name="q6" value="A"> A) Poemas.</label>
+      <label><input type="radio" name="q6" value="B"> B) Las 3 Q (QUE VEO, QUE NO VEO Y QUE INFIERO).</label>
+      <label><input type="radio" name="q6" value="C"> C) Acrósticos.</label>
+      <label><input type="radio" name="q6" value="D"> D) Leyendas.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. La fase de Imaginación permite al estudiante realizar diversas creaciones. ¿Cuál de las siguientes opciones NO corresponde a esta fase?</p>
+      <label><input type="radio" name="q7" value="A"> A) Cuentos.</label>
+      <label><input type="radio" name="q7" value="B"> B) Mapas mentales.</label>
+      <label><input type="radio" name="q7" value="C"> C) Canciones.</label>
+      <label><input type="radio" name="q7" value="D"> D) Adivinanzas.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Qué tipo de análisis se utiliza en la fase de Análisis para dar a conocer las características de un solo tema?</p>
+      <label><input type="radio" name="q8" value="A"> A) Análisis comparativo.</label>
+      <label><input type="radio" name="q8" value="B"> B) Análisis crítico.</label>
+      <label><input type="radio" name="q8" value="C"> C) Análisis descriptivo.</label>
+      <label><input type="radio" name="q8" value="D"> D) Análisis literario.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. En la fase de Reflexión, ¿cuál es la técnica más práctica para redactar un resumen del tema o temas?</p>
+      <label><input type="radio" name="q9" value="A"> A) La técnica del glosario.</label>
+      <label><input type="radio" name="q9" value="B"> B) La técnica del subrayado.</label>
+      <label><input type="radio" name="q9" value="C"> C) La técnica del interrogatorio o de las 3 Q.</label>
+      <label><input type="radio" name="q9" value="D"> D) La técnica del acróstico.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. Según la fase de Opinión Personal, ¿qué se debe tomar en cuenta al redactar el comentario final de lo leído?</p>
+      <label><input type="radio" name="q10" value="A"> A) Solo la opinión del autor original.</label>
+      <label><input type="radio" name="q10" value="B"> B) Cómo le pareció el tema u obra y qué aspectos debe manejar como estudiante.</label>
+      <label><input type="radio" name="q10" value="C"> C) Una lista enumerada de conclusiones y recomendaciones.</label>
+      <label><input type="radio" name="q10" value="D"> D) Un análisis crítico utilizando la técnica PNI.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 1: "Se define como un Método de aprendizaje que fortalece el proceso de enseñanza-aprendizaje..."
+    q2: "B", // Page 1: "...permite desarrollar los procesos mentales de observación, memoria comprensiva, imaginación creativa, análisis, reflexión y opinión personal..."
+    q3: "B", // Page 1: "...los cuales se fundamentan en la taxonomía de Robert Marzano."
+    q4: "C", // Page 2: "La segunda o indirecta es la que observamos mediante la lectura de libros, revistas, periódicos, conversaciones, televisión, radio, etc."
+    q5: "C", // Page 2: Techniques listed are Lectura exploratoria, Lectura rápida, Técnica de la palabra desconocida, Técnica del subrayado, Técnica del glosario. "Lluvia de ideas" is not there.
+    q6: "B", // Page 3: "Las 3 Q (QUE VEO, QUE NO VEO Y QUE INFIERO) ... Este aspecto induce a conocer los aspectos y definiciones más importantes que se deben manejar."
+    q7: "B", // Page 3: Imaginación lists Poemas, Fábulas, Acrósticos, Leyendas, Cuentos, Canciones, Adivinanzas. Mapas mentales are under Memoria (Page 3).
+    q8: "C", // Page 4: "Análisis descriptivo (cuando se trata de un solo tema, en donde se dan a conocer las características del mismo.)"
+    q9: "C", // Page 5: "Lo más práctico en este aspecto es redactar un resumen del tema o temas, el cual se puede realizar por medio de la técnica del interrogatorio o de las 3 Q."
+    q10: "B" // Page 5: "Se toman en cuenta aspectos como: Cómo me pareció el tema u obra? • Qué aspectos debo manejar como estudiante?"
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    // Hide any warning messages
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

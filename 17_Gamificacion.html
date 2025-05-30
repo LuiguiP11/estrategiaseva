@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - La Gamificación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - La Gamificación como Herramienta de Evaluación Estudiantil</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Qué es la gamificación en la educación, según el documento?</p>
+      <label><input type="radio" name="q1" value="A"> A) La utilización exclusiva de videojuegos en el aula.</label>
+      <label><input type="radio" name="q1" value="B"> B) La aplicación de elementos y principios de los videojuegos en entornos de aprendizaje no lúdicos.</label>
+      <label><input type="radio" name="q1" value="C"> C) Un método de evaluación tradicional con exámenes escritos.</label>
+      <label><input type="radio" name="q1" value="D"> D) Una estrategia para reducir el tiempo de estudio de los alumnos.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Cuál es el principal objetivo de la gamificación en la educación, según Hamari et al. (2020)?</p>
+      <label><input type="radio" name="q2" value="A"> A) Aumentar la motivación intrínseca de los estudiantes.</label>
+      <label><input type="radio" name="q2" value="B"> B) Reemplazar a los profesores con inteligencia artificial.</label>
+      <label><input type="radio" name="q2" value="C"> C) Reducir la cantidad de tareas asignadas.</label>
+      <label><input type="radio" name="q2" value="D"> D) Facilitar la memorización de datos sin comprensión.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Qué beneficio importante ofrece la gamificación en cuanto a la retroalimentación, según Brophy (2019)?</p>
+      <label><input type="radio" name="q3" value="A"> A) Retroalimentación solo al final del curso.</label>
+      <label><input type="radio" name="q3" value="B"> B) Retroalimentación inmediata y en tiempo real.</label>
+      <label><input type="radio" name="q3" value="C"> C) Ausencia de retroalimentación para fomentar la autonomía.</label>
+      <label><input type="radio" name="q3" value="D"> D) Retroalimentación solo a los estudiantes con bajo rendimiento.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué tipo de habilidades blandas puede promover la gamificación?</p>
+      <label><input type="radio" name="q4" value="A"> A) Habilidades de cálculo mental rápido.</label>
+      <label><input type="radio" name="q4" value="B"> B) Habilidades de memorización de textos complejos.</label>
+      <label><input type="radio" name="q4" value="C"> C) Colaboración, resolución de problemas y toma de decisiones.</label>
+      <label><input type="radio" name="q4" value="D"> D) Habilidades de escritura formal únicamente.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Cuál es una de las críticas a la evaluación tradicional mencionada en el documento?</p>
+      <label><input type="radio" name="q5" value="A"> A) Que fomenta demasiado la creatividad.</label>
+      <label><input type="radio" name="q5" value="B"> B) Que se centra exclusivamente en los resultados finales, dejando de lado el proceso de aprendizaje.</label>
+      <label><input type="radio" name="q5" value="C"> C) Que promueve el trabajo en equipo de manera excesiva.</label>
+      <label><input type="radio" name="q5" value="D"> D) Que proporciona demasiada retroalimentación.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Qué elemento de gamificación permite comparar el progreso de los estudiantes con el de sus compañeros, generando competencia sana?</p>
+      <label><input type="radio" name="q6" value="A"> A) Puntos y niveles.</label>
+      <label><input type="radio" name="q6" value="B"> B) Insignias y recompensas.</label>
+      <label><input type="radio" name="q6" value="C"> C) Tablas de clasificación.</label>
+      <label><input type="radio" name="q6" value="D"> D) Misiones y desafíos.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Qué problema recurrente en los sistemas de evaluación tradicionales disminuye con la gamificación?</p>
+      <label><input type="radio" name="q7" value="A"> A) La falta de interés en el contenido.</label>
+      <label><input type="radio" name="q7" value="B"> B) La ansiedad evaluativa.</label>
+      <label><input type="radio" name="q7" value="C"> C) La dificultad para obtener altas calificaciones.</label>
+      <label><input type="radio" name="q7" value="D"> D) La necesidad de justificar las respuestas.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Cuál es uno de los desafíos de la gamificación mal diseñada, según el documento?</p>
+      <label><input type="radio" name="q8" value="A"> A) Aumento de la participación.</label>
+      <label><input type="radio" name="q8" value="B"> B) Reducción de la ansiedad.</label>
+      <label><input type="radio" name="q8" value="C"> C) Sobrecarga cognitiva, distrayendo a los estudiantes de los objetivos de aprendizaje.</label>
+      <label><input type="radio" name="q8" value="D"> D) Mejora del rendimiento académico.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Qué plataforma permite a los docentes crear cuestionarios interactivos en los que los estudiantes compiten en tiempo real?</p>
+      <label><input type="radio" name="q9" value="A"> A) Classcraft.</label>
+      <label><input type="radio" name="q9" value="B"> B) Moodle.</label>
+      <label><input type="radio" name="q9" value="C"> C) Kahoot!.</label>
+      <label><input type="radio" name="q9" value="D"> D) Google Classroom.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. Según el estudio de Martínez et al. (2020) en Ecuador, ¿qué mejoras se observaron en el rendimiento académico y la tasa de ausentismo con la gamificación?</p>
+      <label><input type="radio" name="q10" value="A"> A) Reducción del rendimiento y aumento del ausentismo.</label>
+      <label><input type="radio" name="q10" value="B"> B) Mejora del 25% en el rendimiento y reducción del 15% en el ausentismo.</label>
+      <label><input type="radio" name="q10" value="C"> C) No se observaron cambios significativos.</label>
+      <label><input type="radio" name="q10" value="D"> D) Aumento del ausentismo sin cambios en el rendimiento.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 4: "La gamificación en la educación consiste en la utilización de elementos y principios de los videojuegos en entornos de aprendizaje no lúdicos."
+    q2: "A", // Page 4: "...la gamificación en la educación busca principalmente aumentar la motivación intrínseca de los estudiantes..."
+    q3: "B", // Page 5: "...los estudiantes gamificados reciben feedback inmediato y en tiempo real..."
+    q4: "C", // Page 5: "...la gamificación puede promover el desarrollo de habilidades blandas como la colaboración, la resolución de problemas y la toma de decisiones."
+    q5: "B", // Page 6: "La evaluación tradicional ha sido criticada por centrarse exclusivamente en los resultados finales, dejando de lado el proceso de aprendizaje..."
+    q6: "C", // Page 6: "Tablas de clasificación: Permiten comparar el progreso de los estudiantes con el de sus compañeros, generando competencia sana."
+    q7: "B", // Page 7: "Reducción de la ansiedad evaluativa: La ansiedad ante los exámenes es un problema recurrente en los sistemas de evaluación tradicionales. Sin embargo, cuando las evaluaciones se transforman en juegos, la percepción de estrés disminuye..."
+    q8: "C", // Page 8: "Sobrecarga cognitiva: La gamificación mal diseñada puede generar una sobrecarga de información, distrayendo a los estudiantes de los objetivos de aprendizaje."
+    q9: "C", // Page 8: "Kahoot!: Esta plataforma permite a los docentes crear cuestionarios interactivos en los que los estudiantes compiten en tiempo real..."
+    q10: "B" // Page 8: "Los resultados mostraron una mejora del 25% en el rendimiento académico general y una reducción del 15% en la tasa de ausentismo."
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>  Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

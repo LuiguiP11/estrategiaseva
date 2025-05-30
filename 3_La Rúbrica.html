@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - La Rúbrica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - La Rúbrica como Instrumento Pedagógico</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Qué son las rúbricas según el documento?</p>
+      <label><input type="radio" name="q1" value="A"> A) Instrumentos para medir la velocidad de lectura.</label>
+      <label><input type="radio" name="q1" value="B"> B) Instrumentos de evaluación para valorar el trabajo o desempeño de los estudiantes.</label>
+      <label><input type="radio" name="q1" value="C"> C) Listas de asistencia para control de clases.</label>
+      <label><input type="radio" name="q1" value="D"> D) Herramientas para organizar debates en línea.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Cuál es uno de los principales beneficios que aporta una rúbrica a los estudiantes?</p>
+      <label><input type="radio" name="q2" value="A"> A) Les permite conocer las respuestas correctas de antemano.</label>
+      <label><input type="radio" name="q2" value="B"> B) Les ayuda a comprender las expectativas del profesor y a mejorar su trabajo.</label>
+      <label><input type="radio" name="q2" value="C"> C) Reduce la cantidad de trabajo que deben realizar.</label>
+      <label><input type="radio" name="q2" value="D"> D) Elimina la necesidad de retroalimentación del profesor.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿De qué se compone una rúbrica en términos técnicos?</p>
+      <label><input type="radio" name="q3" value="A"> A) De un listado de nombres de estudiantes y sus calificaciones finales.</label>
+      <label><input type="radio" name="q3" value="B"> B) De un conjunto de preguntas de opción múltiple y sus soluciones.</label>
+      <label><input type="radio" name="q3" value="C"> C) De criterios, indicadores y descriptores articulados a través de una gradación cualitativa y/o cuantitativa.</label>
+      <label><input type="radio" name="q3" value="D"> D) De un resumen de los temas cubiertos en el curso.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Cuántos estándares de desempeño (descriptores) se recomiendan como mínimo y máximo al construir una rúbrica?</p>
+      <label><input type="radio" name="q4" value="A"> A) Uno o dos.</label>
+      <label><input type="radio" name="q4" value="B"> B) Entre tres y cinco.</label>
+      <label><input type="radio" name="q4" value="C"> C) Más de cinco.</label>
+      <label><input type="radio" name="q4" value="D"> D) No hay un número recomendado.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Qué tipo de adverbios se recomienda NO utilizar al describir los estándares de desempeño en una rúbrica?</p>
+      <label><input type="radio" name="q5" value="A"> A) Adverbios de tiempo como "siempre" o "nunca".</label>
+      <label><input type="radio" name="q5" value="B"> B) Adverbios de modo como "correctamente" o "eficazmente".</label>
+      <label><input type="radio" name="q5" value="C"> C) Adverbios de cantidad como "algunos", "pocos", "ninguno", "muchos", "medianamente".</label>
+      <label><input type="radio" name="q5" value="D"> D) Adverbios de lugar como "aquí" o "allí".</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Cuál de las siguientes categorías NO forma parte de la rúbrica RETAF propuesta en el documento?</p>
+      <label><input type="radio" name="q6" value="A"> A) Aspectos formales.</label>
+      <label><input type="radio" name="q6" value="B"> B) Participación en el foro.</label>
+      <label><input type="radio" name="q6" value="C"> C) Habilidades de programación.</label>
+      <label><input type="radio" name="q6" value="D"> D) Evidencias de aprendizaje.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. En la rúbrica RETAF, ¿qué valor numérico se adjudica a la calificación "A = Muy bien"?</p>
+      <label><input type="radio" name="q7" value="A"> A) 0.50</label>
+      <label><input type="radio" name="q7" value="B"> B) 0.75</label>
+      <label><input type="radio" name="q7" value="C"> C) 1</label>
+      <label><input type="radio" name="q7" value="D"> D) 0</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Qué significa que una rúbrica sea "holística"?</p>
+      <label><input type="radio" name="q8" value="A"> A) Que se centra en un área concreta de aprendizaje.</label>
+      <label><input type="radio" name="q8" value="B"> B) Que trata de evaluar el aprendizaje o competencia desde una visión más global.</label>
+      <label><input type="radio" name="q8" value="C"> C) Que solo utiliza criterios cuantitativos.</label>
+      <label><input type="radio" name="q8" value="D"> D) Que solo se aplica en foros online.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Cuál es el doble valor de la rúbrica en la práctica educativa, según la discusión y conclusiones del documento?</p>
+      <label><input type="radio" name="q9" value="A"> A) Solo como herramienta de calificación y para reducir el trabajo del profesor.</label>
+      <label><input type="radio" name="q9" value="B"> B) Como herramienta de evaluación y como guía para el cumplimiento de actividades.</label>
+      <label><input type="radio" name="q9" value="C"> C) Solo para evaluar conocimientos teóricos y para comparar estudiantes.</label>
+      <label><input type="radio" name="q9" value="D"> D) Para sustituir completamente la interacción entre profesor y alumno.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. ¿En qué momento se recomienda presentar la rúbrica a los estudiantes como "guía de procedimiento"?</p>
+      <label><input type="radio" name="q10" value="A"> A) Al final del proceso formativo, junto con la calificación final.</label>
+      <label><input type="radio" name="q10" value="B"> B) En el inicio de la actividad formativa o curso.</label>
+      <label><input type="radio" name="q10" value="C"> C) Solo si el estudiante lo solicita explícitamente.</label>
+      <label><input type="radio" name="q10" value="D"> D) Nunca, para no influir en sus respuestas.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 1: "Las rúbricas son instrumentos de evaluación que se utilizan para valorar el trabajo o desempeño de los estudiantes."
+    q2: "B", // Page 1: "Este instrumento puede aportar una mejora de la calidad del proceso de enseñanza-aprendizaje: ayudando al estudiante a comprender cuáles son las expectativas del profesor respecto a la actividad formativa propuesta; y facilitando el logro de sus aprendizajes tomando la RETAF como guía de procedimiento."
+    q3: "C", // Page 47: "En términos técnicos, una rúbrica es una matriz o una tabla de doble entrada que contiene criterios (dimensiones), indicadores y descriptores que se articulan a través de una gradación cualitativa y/o cuantitativa de la calidad del trabajo o desempeño observado."
+    q4: "B", // Page 48: "Los estándares de desempeño deben ser tres como mínimo, y cinco como máximo."
+    q5: "C", // Page 48: "...se recomienda no utilizar adverbios como algunos, pocos, ninguno, muchos, medianamente, etc., pues son apreciaciones subjetivas que reducen el valor objetivo que presenta la rúbrica."
+    q6: "C", // Page 144 (RÚBRICA RETAF table): Categories are Aspectos formales, Participación en el foro, Análisis de las aportaciones, Evidencias de aprendizaje. "Habilidades de programación" is not listed.
+    q7: "C", // Page 144 (RÚBRICA RETAF table): "A= Muy bien (x 1)"
+    q8: "B", // Page 2: "...las holísticas, que tratan de evaluar el aprendizaje o competencia desde una visión más global..."
+    q9: "B", // Page 148: "De una parte, es una herramienta de evaluación... De otra parte, también sirve al alumnado como guía para cumplimentar las partes en las que se estructura una actividad."
+    q10: "B" // Page 148: "Se presenta a los estudiantes en el inicio de la actividad formativa o curso como guía de procedimiento para lograr los objetivos de utilización didáctica del foro y como herramienta de apoyo a la tutorización docente."
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    // Hide any warning messages
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

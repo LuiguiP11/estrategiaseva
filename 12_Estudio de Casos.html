@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - Estudio de Casos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - Estudio de Casos como Técnica Didáctica</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. Según el documento, ¿en qué consiste principalmente la técnica de estudio de casos?</p>
+      <label><input type="radio" name="q1" value="A"> A) En memorizar leyes y reglamentos para aplicarlos a situaciones.</label>
+      <label><input type="radio" name="q1" value="B"> B) En proporcionar situaciones problemáticas de la vida real para su estudio y análisis, entrenando en la generación de soluciones.</label>
+      <label><input type="radio" name="q1" value="C"> C) En la representación teatral de conflictos sociales.</label>
+      <label><input type="radio" name="q1" value="D"> D) En la lectura pasiva de historias sin discusión.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Cuál de las siguientes habilidades NO se menciona explícitamente que desarrolle la participación en la técnica de estudio de casos?</p>
+      <label><input type="radio" name="q2" value="A"> A) Análisis, síntesis y evaluación de la información.</label>
+      <label><input type="radio" name="q2" value="B"> B) Desarrollo del pensamiento crítico.</label>
+      <label><input type="radio" name="q2" value="C"> C) Habilidades de programación informática.</label>
+      <label><input type="radio" name="q2" value="D"> D) Trabajo en equipo y toma de decisiones.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿En qué universidad y programa se comenzó a utilizar el "Case System" en su acepción estricta hacia 1914?</p>
+      <label><input type="radio" name="q3" value="A"> A) Universidad de Salamanca, programa de Filosofía.</label>
+      <label><input type="radio" name="q3" value="B"> B) Universidad de Cambridge, programa de Medicina.</label>
+      <label><input type="radio" name="q3" value="C"> C) Universidad de Harvard, programa de Derecho.</label>
+      <label><input type="radio" name="q3" value="D"> D) Universidad de Oxford, programa de Administración.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué NO proporciona el caso al estudiante, sino que le entrena para generarlo?</p>
+      <label><input type="radio" name="q4" value="A"> A) Datos concretos para la reflexión.</label>
+      <label><input type="radio" name="q4" value="B"> B) La habilidad creativa y la capacidad de innovación.</label>
+      <label><input type="radio" name="q4" value="C"> C) Soluciones directas a los problemas.</label>
+      <label><input type="radio" name="q4" value="D"> D) Un recurso para conectar la teoría a la práctica real.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Según Martínez y Musitu (1995), ¿cuántos modelos de estudio de casos se pueden considerar en función de los propósitos metodológicos?</p>
+      <label><input type="radio" name="q5" value="A"> A) Uno.</label>
+      <label><input type="radio" name="q5" value="B"> B) Dos.</label>
+      <label><input type="radio" name="q5" value="C"> C) Tres.</label>
+      <label><input type="radio" name="q5" value="D"> D) Cuatro.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Cuál de las siguientes es una característica recomendable de un buen caso, según el documento?</p>
+      <label><input type="radio" name="q6" value="A"> A) Ser excesivamente detallado y largo.</label>
+      <label><input type="radio" name="q6" value="B"> B) Ser ambiguo, como la realidad.</label>
+      <label><input type="radio" name="q6" value="C"> C) Contener siempre una única solución correcta.</label>
+      <label><input type="radio" name="q6" value="D"> D) Estar redactado con adornos literarios.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Qué se debe evitar al elaborar un caso, según las recomendaciones del documento?</p>
+      <label><input type="radio" name="q7" value="A"> A) Dejar datos en la penumbra para que los invente el que analice la historia.</label>
+      <label><input type="radio" name="q7" value="B"> B) Disimular los detalles de identificación de los protagonistas.</label>
+      <label><input type="radio" name="q7" value="C"> C) Partir de un hecho ocurrido en la vida real.</label>
+      <label><input type="radio" name="q7" value="D"> D) Elaborar un guion detallado antes de redactar.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Cuál es la fase de un estudio de caso en la que se produce una "explosión" de opiniones, impresiones y juicios por parte de los participantes?</p>
+      <label><input type="radio" name="q8" value="A"> A) Fase preliminar.</label>
+      <label><input type="radio" name="q8" value="B"> B) Fase eclosiva.</label>
+      <label><input type="radio" name="q8" value="C"> C) Fase de análisis.</label>
+      <label><input type="radio" name="q8" value="D"> D) Fase de conceptualización.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. En la discusión de un caso, ¿cuál es el papel que el profesor NO debe asumir?</p>
+      <label><input type="radio" name="q9" value="A"> A) Moderador de la discusión.</label>
+      <label><input type="radio" name="q9" value="B"> B) Motivador de la discusión.</label>
+      <label><input type="radio" name="q9" value="C"> C) Transmisor de conocimientos (en cierto modo pasivo).</label>
+      <label><input type="radio" name="q9" value="D"> D) Intervenir personalmente dando su propia opinión.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. ¿Cuál de los siguientes NO es un aprendizaje que fomenta la técnica de estudio de casos, asociado con la Misión del Tecnológico de Monterrey?</p>
+      <label><input type="radio" name="q10" value="A"> A) Trabajo en equipo.</label>
+      <label><input type="radio" name="q10" value="B"> B) Capacidad de aprender por cuenta propia.</label>
+      <label><input type="radio" name="q10" value="C"> C) Habilidades de memorización de datos sin análisis.</label>
+      <label><input type="radio" name="q10" value="D"> D) Pensamiento crítico.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 3: "La técnica de estudio de casos, consiste precisamente en proporcionar una serie de casos que representen situaciones problemáticas diversas de la vida real para que se estudien y analicen. De esta manera, se pretende entrenar a los alumnos en la generación de soluciones."
+    q2: "C", // Page 2: Mentions analysis, synthesis, evaluation, critical thinking, teamwork, decision-making, innovation, creativity. Programming skills are not mentioned.
+    q3: "C", // Page 3: "En su acepción más estricta, el caso se comienza a utilizar en Harvard, en el programa de Derecho, hacia 1914."
+    q4: "C", // Page 3-4: "El caso no proporciona soluciones sino datos concretos para reflexionar... No ofrece las soluciones al estudiante, sino que le entrena para generarlas."
+    q5: "C", // Page 4: "se pueden considerar en principio tres modelos que se diferencian en razón de los propósitos metodológicos que específicamente se pretenden en cada uno"
+    q6: "B", // Page 11: "Ambiguo: como la realidad, que no se convierta en un teatro infantil y maniqueo, de buenos contra malos."
+    q7: "A", // Page 11: "Dejar datos en la penumbra para que los invente el que analice posteriormente la historia (un caso no es un test proyectivo)."
+    q8: "B", // Page 16: "Fase eclosiva: "explosión" de opiniones, impresiones, juicios, posibles alternativas, etc., por parte de los participantes."
+    q9: "D", // Page 17: "Por ello, no debe en absoluto intervenir personalmente dando la propia opinión: no es posible ser juez y parte en el mismo proceso."
+    q10: "C" // Page 19: The list of learnings associated with Tecnológico de Monterrey's mission includes critical thinking, analysis, synthesis, etc., but not "habilidades de memorización de datos sin análisis".
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    // Hide any warning messages
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

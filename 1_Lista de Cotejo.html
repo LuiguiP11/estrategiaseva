@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - La Lista de Cotejo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - La Lista de Cotejo</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Cuál es el propósito principal de una Lista de Cotejo, Lista de Control o Check-list?</p>
+      <label><input type="radio" name="q1" value="A"> A) Registrar opiniones subjetivas de los estudiantes.</label>
+      <label><input type="radio" name="q1" value="B"> B) Presentar una enumeración de conductas, cualidades o características esperables/observables de los estudiantes.</label>
+      <label><input type="radio" name="q1" value="C"> C) Evaluar el nivel de memorización de conceptos teóricos.</label>
+      <label><input type="radio" name="q1" value="D"> D) Medir la velocidad de respuesta de los estudiantes.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Qué tipos de saberes puede evaluar una Lista de Cotejo?</p>
+      <label><input type="radio" name="q2" value="A"> A) Solo saberes declarativos (conceptuales).</label>
+      <label><input type="radio" name="q2" value="B"> B) Solo saberes procedimentales (habilidades).</label>
+      <label><input type="radio" name="q2" value="C"> C) Solo saberes actitudinales (actitudes).</label>
+      <label><input type="radio" name="q2" value="D"> D) Todos los tipos de saberes: declarativos, procedimentales y actitudinales.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Qué tipo de aseveraciones se deben resguardar al planificar los criterios de una Lista de Cotejo?</p>
+      <label><input type="radio" name="q3" value="A"> A) Valorativas intermedias como "a veces" o "es posible".</label>
+      <label><input type="radio" name="q3" value="B"> B) Subjetivas y abiertas a interpretación.</label>
+      <label><input type="radio" name="q3" value="C"> C) Dicotómicas (sí/no, cumple/no cumple).</label>
+      <label><input type="radio" name="q3" value="D"> D) Extensas y detalladas.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué se recomienda evitar al construir una Lista de Cotejo?</p>
+      <label><input type="radio" name="q4" value="A"> A) El uso de enunciados valorativos intermedios.</label>
+      <label><input type="radio" name="q4" value="B"> B) Indicadores claramente observables.</label>
+      <label><input type="radio" name="q4" value="C"> C) Una tabla de tres columnas.</label>
+      <label><input type="radio" name="q4" value="D"> D) Señalar el propósito de la lista de cotejo.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. Para una Lista de Cotejo individual, ¿cuántas columnas se recomienda utilizar?</p>
+      <label><input type="radio" name="q5" value="A"> A) Dos.</label>
+      <label><input type="radio" name="q5" value="B"> B) Tres.</label>
+      <label><input type="radio" name="q5" value="C"> C) Cuatro.</label>
+      <label><input type="radio" name="q5" value="D"> D) Cinco o más.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Cuál es la principal diferencia entre una Lista de Cotejo y una Escala de Valoración (Escala Likert)?</p>
+      <label><input type="radio" name="q6" value="A"> A) La Lista de Cotejo es solo para evaluación grupal, la Escala de Valoración es individual.</label>
+      <label><input type="radio" name="q6" value="B"> B) La Lista de Cotejo solo mide presencia/ausencia de una conducta, mientras la Escala de Valoración permite una evaluación graduada.</label>
+      <label><input type="radio" name="q6" value="C"> C) La Lista de Cotejo es para saberes conceptuales, la Escala de Valoración para saberes actitudinales.</label>
+      <label><input type="radio" name="q6" value="D"> D) La Escala de Valoración es más rápida de corregir que la Lista de Cotejo.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. Según la "Presentación" del documento, ¿cuáles son los tres tipos de procedimientos evaluativos que se agrupan en las fichas?</p>
+      <label><input type="radio" name="q7" value="A"> A) Diagnósticos, formativos y sumativos.</label>
+      <label><input type="radio" name="q7" value="B"> B) Cuantitativos, cualitativos y mixtos.</label>
+      <label><input type="radio" name="q7" value="C"> C) Objetivos, cualitativos y de evaluación auténtica.</label>
+      <label><input type="radio" name="q7" value="D"> D) Individuales, grupales y colaborativos.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Qué tipo de ítem se caracteriza por presentar una proposición para que el estudiante decida si es verdadera o falsa?</p>
+      <label><input type="radio" name="q8" value="A"> A) Preguntas de desarrollo.</label>
+      <label><input type="radio" name="q8" value="B"> B) Ítem de selección múltiple con respuesta graduada.</label>
+      <label><input type="radio" name="q8" value="C"> C) Ítem de verdadero/falso.</label>
+      <label><input type="radio" name="q8" value="D"> D) Ítem de términos pareados.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Cuál es una de las ventajas de los "Ítemes de Selección Múltiple con Respuesta Única"?</p>
+      <label><input type="radio" name="q9" value="A"> A) Permiten respuestas muy extensas y detalladas.</label>
+      <label><input type="radio" name="q9" value="B"> B) Su rapidez para corregirlos y la objetividad de la respuesta correcta.</label>
+      <label><input type="radio" name="q9" value="C"> C) Fomentan la creatividad y la expresión personal sin restricciones.</label>
+      <label><input type="radio" name="q9" value="D"> D) Requieren que el estudiante justifique todas sus respuestas.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. ¿Qué se busca evaluar con un "Portafolio" como instrumento?</p>
+      <label><input type="radio" name="q10" value="A"> A) Únicamente la capacidad de memorización de datos.</label>
+      <label><input type="radio" name="q10" value="B"> B) El progreso del aprendizaje del estudiante a través de una colección de evidencias y su reflexión personal.</label>
+      <label><input type="radio" name="q10" value="C"> C) La habilidad del estudiante para resolver problemas complejos en tiempo real.</label>
+      <label><input type="radio" name="q10" value="D"> D) La capacidad de un estudiante para trabajar de forma aislada.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 20: "Este tipo de instrumento presenta, conforme con las directrices de una actividad o tarea, una enumeración de conductas, cualidades o características esperables/observables de los estudiantes."
+    q2: "D", // Page 20: "La lista de cotejo, lista de control o check-list es útil para evaluar todos los tipos de saberes (declarativos, procedimentales y actitudinales)."
+    q3: "C", // Page 20: "...con el objeto de resguardar la construcción de aseveraciones dicotómicas (sí/no, cumple/no cumple, etc.);"
+    q4: "A", // Page 20: "descartar el uso de enunciados valorativos intermedios del tipo “a veces”, “es posible” o similares;"
+    q5: "B", // Page 20: "utilizar una tabla de tres columnas: en la primera consignar los indicadores que se van evaluar, en la segunda la respuesta de cumplimiento positivo (sí) y en la tercera la respuesta de cumplimiento negativo (no);"
+    q6: "B", // Page 22: "Es muy similar a la lista de control, pero se diferencia de esta en que permite realizar una evaluación graduada de la conducta o rasgo observado."
+    q7: "C", // Page 4: "...se agrupan en tres tipos de procedimientos: objetivos, cualitativos y de evaluación auténtica."
+    q8: "C", // Page 5: "Este tipo de ítem se caracteriza por presentar a los estudiantes una proposición relativa a los contenidos que se están evaluando, para que este decida si la proposición es verdadera o falsa."
+    q9: "B", // Page 6: "Entre las ventajas de este tipo de ítemes se encuentran: la rapidez para corregirlos, la objetividad de la respuesta correcta y su capacidad para medir habilidades básicas y superiores."
+    q10: "B" // Page 36: "El portafolio es una colección de evidencias que muestra las actividades que ha desarrollado un estudiante durante un periodo determinado, y cómo estas inciden en el progreso de su aprendizaje." and "El resultado es que el portafolios no solo es apto para ejercer la evaluación, sino que también lo es para realizar procesos autoevaluativos y coevaluativos."
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    // Hide any warning messages
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

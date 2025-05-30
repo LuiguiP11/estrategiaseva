@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - El Debate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - El Debate como Instrumento de Evaluación</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Cuál es uno de los objetivos tradicionales de la enseñanza universitaria que se ha visto obstaculizado, según el resumen?</p>
+      <label><input type="radio" name="q1" value="A"> A) Fomentar la memorización de contenidos.</label>
+      <label><input type="radio" name="q1" value="B"> B) Promover el espíritu crítico.</label>
+      <label><input type="radio" name="q1" value="C"> C) Generalizar las pruebas de evaluación objetiva.</label>
+      <label><input type="radio" name="q1" value="D"> D) Aumentar la masificación de las aulas.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Qué defiende el presente trabajo como instrumento para la evaluación de competencias relacionadas con el pensamiento crítico?</p>
+      <label><input type="radio" name="q2" value="A"> A) El examen escrito tradicional.</label>
+      <label><input type="radio" name="q2" value="B"> B) El debate dirigido en el aula.</label>
+      <label><input type="radio" name="q2" value="C"> C) Las encuestas de satisfacción.</label>
+      <label><input type="radio" name="q2" value="D"> D) Los informes de prácticas individuales.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿En qué asignatura y universidad se enmarca la experiencia expuesta en el trabajo?</p>
+      <label><input type="radio" name="q3" value="A"> A) Marketing Digital en la Universidad de Valencia.</label>
+      <label><input type="radio" name="q3" value="B"> B) Gestión del Comercio Exterior en la Universidad Politécnica de Valencia.</label>
+      <label><input type="radio" name="q3" value="C"> C) Economía Internacional en la Universidad de Burgos.</label>
+      <label><input type="radio" name="q3" value="D"> D) Didáctica Universitaria en la Universidad de Alicante.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Cuál de los siguientes NO es un objetivo específico del debate, según el texto?</p>
+      <label><input type="radio" name="q4" value="A"> A) Que el estudiante demuestre capacidad de obtener y analizar información.</label>
+      <label><input type="radio" name="q4" value="B"> B) Que el estudiante sea capaz de adoptar y defender una postura crítica.</label>
+      <label><input type="radio" name="q4" value="C"> C) Que el estudiante memorice fechas y datos históricos.</label>
+      <label><input type="radio" name="q4" value="D"> D) Que el estudiante demuestre capacidad para el trabajo en equipo.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Cuál fue el tema propuesto a los estudiantes para el debate dirigido?</p>
+      <label><input type="radio" name="q5" value="A"> A) El impacto de la globalización en la economía europea.</label>
+      <label><input type="radio" name="q5" value="B"> B) La invasión de los productos textiles "Made in China": ¿Cuál es la estrategia comercial a seguir por las empresas españolas?</label>
+      <label><input type="radio" name="q5" value="C"> C) La importancia de las TIC en el comercio internacional.</label>
+      <label><input type="radio" name="q5" value="D"> D) Los desafíos de la exportación para las PYMES.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Qué método de evaluación se utiliza para el debate, dada la dificultad de medir aprendizajes procedimentales y actitudinales con exámenes escritos?</p>
+      <label><input type="radio" name="q6" value="A"> A) Autoevaluación.</label>
+      <label><input type="radio" name="q6" value="B"> B) Coevaluación.</label>
+      <label><input type="radio" name="q6" value="C"> C) Observación directa del comportamiento del estudiante en acción.</label>
+      <label><input type="radio" name="q6" value="D"> D) Exámenes de opción múltiple.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Cuál de las siguientes NO es una técnica de observación seleccionada para la evaluación a través del debate?</p>
+      <label><input type="radio" name="q7" value="A"> A) Lista de cotejo.</label>
+      <label><input type="radio" name="q7" value="B"> B) Escala de calificación.</label>
+      <label><input type="radio" name="q7" value="C"> C) Registro anecdótico.</label>
+      <label><input type="radio" name="q7" value="D"> D) Examen oral estructurado.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Cuánto contribuye la calificación obtenida en el debate dirigido a la calificación final de la asignatura?</p>
+      <label><input type="radio" name="q8" value="A"> A) Un máximo de 0.5 puntos.</label>
+      <label><input type="radio" name="q8" value="B"> B) Un máximo de 1 punto.</label>
+      <label><input type="radio" name="q8" value="C"> C) Un máximo de 1.5 puntos.</label>
+      <label><input type="radio" name="q8" value="D"> D) No contribuye directamente a la calificación final.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Cuál es la función principal de la labor del docente durante la celebración del debate?</p>
+      <label><input type="radio" name="q9" value="A"> A) Actuar únicamente como evaluador pasivo.</label>
+      <label><input type="radio" name="q9" value="B"> B) Resumir las aportaciones al final del debate.</label>
+      <label><input type="radio" name="q9" value="C"> C) Actuar como moderador, dinamizador y observador a un tiempo.</label>
+      <label><input type="radio" name="q9" value="D"> D) Intervenir para corregir cada error de los estudiantes.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. ¿Qué se observa en cuanto a la participación de los estudiantes en el debate, según la valoración de la actividad?</p>
+      <label><input type="radio" name="q10" value="A"> A) Una participación muy baja, con pocos "actores".</label>
+      <label><input type="radio" name="q10" value="B"> B) Una elevada participación, con 19 de 24 asistentes realizando aportaciones.</label>
+      <label><input type="radio" name="q10" value="C"> C) Solo participan los estudiantes más extrovertidos.</label>
+      <label><input type="radio" name="q10" value="D"> D) La participación es igual en todos los grupos, sin distinción de activos o pasivos.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 2: "Entre los objetivos tradicionales de la enseñanza universitaria se encuentra fomentar el espíritu crítico."
+    q2: "B", // Page 2: "En el presente trabajo se defiende la utilidad del debate como instrumento para la evaluación de competencias relacionadas con el pensamiento crítico."
+    q3: "B", // Page 3: "La experiencia expuesta en el presente trabajo se enmarca en la asignatura de Gestión del Comercio Exterior, perteneciente a los estudios de Cuarto curso de la Licenciatura de Administración de Empresas en la Universidad Politécnica de Valencia."
+    q4: "C", // Page 5: Objectives are about information, critical posture, teamwork, and commercial strategies, not memorizing dates.
+    q5: "B", // Page 5: "La invasión de los productos textiles "Made in China": ¿Cuál es la estrategia comercial a seguir por las empresas españolas?"
+    q6: "C", // Page 5: "la evaluación del debate se realiza a través de la observación. ... la observación directa del comportamiento del estudiante en acción."
+    q7: "D", // Page 6: "Entre las técnicas de observación para la evaluación a través del debate, hemos seleccionado la lista de cotejo, la escala de calificación y el registro anecdótico."
+    q8: "C", // Page 7: "La calificación obtenida en el debate dirigido contribuye en un máximo de un punto y medio a la calificación final (1,5 puntos)..."
+    q9: "C", // Page 8: "La labor del docente a lo largo de la celebración del debate es especialmente compleja, ya que debe actuar como moderador, dinamizador y observador a un tiempo."
+    q10: "B" // Page 9: "se observa, por una parte, una elevada participación de los estudiantes en el debate. Concretamente, participan en la actividad 24 de los 60 estudiantes matriculados en la asignatura, lo que se corresponde con el número de estudiantes que suelen seguir las clases. De los 24 asistentes al debate, 19 realizan aportaciones al mismo, esto es, son catalogados como "actores"."
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    // Hide any warning messages
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

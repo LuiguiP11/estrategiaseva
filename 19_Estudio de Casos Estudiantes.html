@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - Estudio de Casos para Estudiantes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - Estudio de Casos para Estudiantes</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Cuál es el objetivo principal de la tarea de redacción de estudios de caso para estudiantes, según el documento?</p>
+      <label><input type="radio" name="q1" value="A"> A) Evaluar la capacidad de memorización de los estudiantes.</label>
+      <label><input type="radio" name="q1" value="B"> B) Fomentar habilidades como la investigación, evaluación, síntesis y comunicación de ideas científicas.</label>
+      <label><input type="radio" name="q1" value="C"> C) Reducir la carga de trabajo del instructor.</label>
+      <label><input type="radio" name="q1" value="D"> D) Promover el trabajo individual sin interacción.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Qué se recomienda a los instructores consultar para obtener una excelente visión general del proceso de redacción de casos?</p>
+      <label><input type="radio" name="q2" value="A"> A) Únicamente el presente artículo.</label>
+      <label><input type="radio" name="q2" value="B"> B) Herreid (1999).</label>
+      <label><input type="radio" name="q2" value="C"> C) Cualquier libro de texto de biología.</label>
+      <label><input type="radio" name="q2" value="D"> D) La colección de casos del NCCSTS sin más referencias.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Qué tipo de fuentes de investigación se advierte a los estudiantes que deben mantener una actitud crítica, pero que pueden ser útiles para desarrollar una narrativa?</p>
+      <label><input type="radio" name="q3" value="A"> A) Artículos revisados por pares.</label>
+      <label><input type="radio" name="q3" value="B"> B) Libros de texto universitarios.</label>
+      <label><input type="radio" name="q3" value="C"> C) Artículos de noticias, sitios web y videos fácilmente disponibles para el público.</label>
+      <label><input type="radio" name="q3" value="D"> D) Revistas científicas especializadas.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Cuál es el primer paso en la planificación de un caso práctico para los estudiantes?</p>
+      <label><input type="radio" name="q4" value="A"> A) Redactar el borrador final del caso.</label>
+      <label><input type="radio" name="q4" value="B"> B) Crear un esquema del caso, identificando la moraleja y los conceptos clave.</label>
+      <label><input type="radio" name="q4" value="C"> C) Presentar el caso a la clase.</label>
+      <label><input type="radio" name="q4" value="D"> D) Obtener la calificación final del instructor.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Qué se recomienda a los estudiantes que utilicen como punto de partida para su narrativa, ya que los casos basados en ellos son más atractivos?</p>
+      <label><input type="radio" name="q5" value="A"> A) Datos ficticios.</label>
+      <label><input type="radio" name="q5" value="B"> B) Artículos periodísticos o artefactos auténticos.</label>
+      <label><input type="radio" name="q5" value="C"> C) Historias de ciencia ficción.</label>
+      <label><input type="radio" name="q5" value="D"> D) Experiencias personales sin verificación.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. En el formato de caso "interrumpido", ¿cuántas preguntas se deben incluir al final de cada sección?</p>
+      <label><input type="radio" name="q6" value="A"> A) Una o dos.</label>
+      <label><input type="radio" name="q6" value="B"> B) Tres a cinco.</label>
+      <label><input type="radio" name="q6" value="C"> C) Más de cinco.</label>
+      <label><input type="radio" name="q6" value="D"> D) Ninguna pregunta, solo texto.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Cuál es uno de los errores comunes que cometen los escritores novatos al redactar un caso, relacionado con la narrativa?</p>
+      <label><input type="radio" name="q7" value="A"> A) Incluir demasiados detalles científicos.</label>
+      <label><input type="radio" name="q7" value="B"> B) Olvidar la narrativa sólida al centrarse en el contenido en cada sección posterior.</label>
+      <label><input type="radio" name="q7" value="C"> C) Usar un lenguaje demasiado formal.</label>
+      <label><input type="radio" name="q7" value="D"> D) No incluir suficientes referencias bibliográficas.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Cómo se evalúan muchos de los entregables intermedios (esquema del caso, borrador del caso, presentaciones del caso)?</p>
+      <label><input type="radio" name="q8" value="A"> A) Con una calificación numérica del 1 al 10.</label>
+      <label><input type="radio" name="q8" value="B"> B) Con un sistema de aprobado/reprobado.</label>
+      <label><input type="radio" name="q8" value="C"> C) Sin calificación, solo con retroalimentación.</label>
+      <label><input type="radio" name="q8" value="D"> D) Mediante una evaluación por pares exclusivamente.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Cuál es la estrategia recomendada para reconocer las contribuciones de cada miembro en los entregables de equipo y ajustar la calificación?</p>
+      <label><input type="radio" name="q9" value="A"> A) Asignar la misma calificación a todos los miembros del equipo.</label>
+      <label><input type="radio" name="q9" value="B"> B) Una evaluación por pares.</label>
+      <label><input type="radio" name="q9" value="C"> C) Que el instructor decida la contribución individual.</label>
+      <label><input type="radio" name="q9" value="D"> D) Basarse únicamente en la autoevaluación de cada estudiante.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. Según el "cono del aprendizaje" (Lord, 2007), ¿cuál es el mejor método para aprender algo?</p>
+      <label><input type="radio" name="q10" value="A"> A) Escuchar una conferencia.</label>
+      <label><input type="radio" name="q10" value="B"> B) Leer un libro de texto.</label>
+      <label><input type="radio" name="q10" value="C"> C) Enseñarlo.</label>
+      <label><input type="radio" name="q10" value="D"> D) Ver un video.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  (function() { // Wrapped in IIFE to prevent re-declaration errors
+    const answers = {
+      q1: "B", // Page 1: "Esta tarea fue un éxito las narrativas fueron creativas, los estudiantes investigaron a fondo y casi una cuarta parte de ellos elaboraron casos que finalmente fueron revisados por pares y publicados en la colección de casos del Centro Nacional para la Enseñanza de Estudios de Caso en Ciencias (NCCSTS)..." and "ganancias para investigar, evaluar Comer, sintetizar, seleccionar y comunicar ideas científicas"
+      q2: "B", // Page 1: "Se recomienda a todos los aspirantes a autores de casos consultar Herreid (1999) para obtener una excelente visión general del proceso de redacción de casos."
+      q3: "C", // Page 2: "Tenga en cuenta que esta investigación debe incluir artículos revisados por pares y también una serie de fuentes que estén fácilmente disponibles para el público (por ejemplo, artículos de noticias, sitios web y videos)."
+      q4: "B", // Page 2: "Tras seleccionar un tema, la siguiente fase es la investigación. Los estudiantes realizan esta parte del proyecto individualmente. El primer paso es crear un esquerna del caso. Este documento les pide que identifiquen la moraleja de su caso y la expongan en una oración concisa."
+      q5: "B", // Page 2: "Los casos basados en hechos reales son más atractivos (Herreid, Schiller, Herreid y Wright, 2012); por lo tanto, recomiendo a mis estudiantes que utilicen articulos periodísticos o artefactos auténticos como punto de partida para su narrativa."
+      q6: "B", // Page 3: "Para un formato interrumpido, los estudiantes deben identificar un objetivo de aprendizaje para cada sección del caso. Generalmente estos se alinean con la lista de viñetas de subtemas identificados en el Esquema del Caso. Con esto en mente, les digo a los estudiantes que cada sección debe contener menos de una página de información, seguida de tres a cinco preguntas."
+      q7: "B", // Page 3: "Si bien el desarrollo de preguntas efectivas es un obstáculo, otro es la falta de seguimiento de la narrativa del caso. Los escritores novatos a menudo cometen el error de comenzar con una narrativa sólida en la primera parte del caso, pero luego la olvidan al centrarse en el contenido en cada sección posterior."
+      q8: "B", // Page 4: "Para solucionar esto, cada una de estas tareas se evalúa con un sistema de aprobado/reprobado."
+      q9: "B", // Page 4: "La estrategia recomendada es una evaluación por pares, como la descrita por Herreid (2001)."
+      q10: "C" // Page 4: "El cono del aprendizaje, recientemente probado y confirmado (Lord, 2007), demuestra que el mejor método para aprender algo es enseñarlo."
+    };
+
+    /**
+     * Checks the user's answers, calculates the score, and provides feedback.
+     * Disables the submit button after submission.
+     */
+    function checkAnswers() {
+      let score = 0;
+      let allAnswered = true;
+
+      // Hide previous warning and clear feedback
+      document.getElementById("warningMessage").style.display = "none";
+      document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+      // Iterate through each question
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback${i}`);
+
+        if (!selected) {
+          // If a question is not answered, set flag and show specific warning
+          allAnswered = false;
+          feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+          feedbackDiv.className = "feedback incorrect";
+        } else {
+          // Check if the selected answer is correct
+          if (selected.value === answers[`q${i}`]) {
+            feedbackDiv.textContent = "✅ ¡Correcto!";
+            feedbackDiv.className = "feedback correct";
+            score++;
+          } else {
+            // Show incorrect feedback and the correct answer
+            feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+            feedbackDiv.className = "feedback incorrect";
+          }
+        }
+      }
+
+      // If not all questions are answered, show general warning and stop
+      if (!allAnswered) {
+          document.getElementById("warningMessage").style.display = "block";
+          return;
+      }
+
+      // Display the final result screen
+      const resultScreen = document.getElementById("finalResult");
+      resultScreen.style.display = "block";
+
+      resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+      if (score === 10) {
+        resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+      } else if (score >= 6) {
+        resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+      } else {
+        resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+      }
+
+      // Disable the submit button to prevent multiple submissions
+      document.getElementById("submitBtn").disabled = true;
+    }
+
+    /**
+     * Resets the quiz to its initial state, clearing selections and feedback.
+     * Re-enables the submit button.
+     */
+    function resetQuiz() {
+      // Clear all feedback messages
+      document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+      // Uncheck all radio buttons
+      document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+      // Hide the final result screen
+      document.getElementById("finalResult").style.display = "none";
+      document.getElementById("warningMessage").style.display = "none";
+      // Re-enable the submit button
+      document.getElementById("submitBtn").disabled = false;
+    }
+
+    // Add event listeners once the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+      document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+      document.getElementById("closeBtn").addEventListener('click', () => window.close());
+    });
+  })(); // End of IIFE
+</script>
+</body>
+</html>

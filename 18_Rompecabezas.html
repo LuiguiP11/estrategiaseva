@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - El Rompecabezas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - El Rompecabezas como Estrategia Didáctica</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Cuál es el principal objetivo de la investigación sobre el rompecabezas en el aprendizaje del cálculo, según el resumen? [cite: 6]</p>
+      <label><input type="radio" name="q1" value="A"> A) Evaluar la capacidad de memorización de fórmulas matemáticas.</label>
+      <label><input type="radio" name="q1" value="B"> B) Determinar si la estrategia didáctica del rompecabezas mejora el aprendizaje del cálculo en estudiantes de ingeniería. [cite: 6]</label>
+      <label><input type="radio" name="q1" value="C"> C) Comparar el rendimiento de estudiantes de ingeniería con estudiantes de otras carreras.</label>
+      <label><input type="radio" name="q1" value="D"> D) Analizar el uso de software de diseño de rompecabezas en la educación.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Qué tipo de metodología de investigación se utilizó en este estudio? [cite: 7, 15]</p>
+      <label><input type="radio" name="q2" value="A"> A) Cualitativa, con estudio de caso.</label>
+      <label><input type="radio" name="q2" value="B"> B) Cuantitativa, de tipo cuasiexperimental, con diseño pretest-postest de un solo grupo. [cite: 7, 15]</label>
+      <label><input type="radio" name="q2" value="C"> C) Mixta, con encuestas y grupos focales.</label>
+      <label><input type="radio" name="q2" value="D"> D) Descriptiva, basada en observación.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Cuántos estudiantes participaron en la muestra del estudio y de qué universidad? [cite: 7, 15, 23]</p>
+      <label><input type="radio" name="q3" value="A"> A) 25 estudiantes de la Universidad Pedagógica Nacional.</label>
+      <label><input type="radio" name="q3" value="B"> B) 30 estudiantes de la Fundación Universitaria Agraria de Colombia (Uniagraria). [cite: 7, 15, 23]</label>
+      <label><input type="radio" name="q3" value="C"> C) 40 estudiantes de la Universidad de Ingeniería.</label>
+      <label><input type="radio" name="q3" value="D"> D) 36 estudiantes de la Universidad del Zulia.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué software se utilizó para el diseño de los rompecabezas en esta investigación? [cite: 7, 15, 23]</p>
+      <label><input type="radio" name="q4" value="A"> A) GeoGebra.</label>
+      <label><input type="radio" name="q4" value="B"> B) Photoshop.</label>
+      <label><input type="radio" name="q4" value="C"> C) Hot Potatoes. [cite: 7, 15, 23]</label>
+      <label><input type="radio" name="q4" value="D"> D) Microsoft Excel.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Cuál fue el método principal de recolección de información para evaluar el impacto de la estrategia? [cite: 8, 16, 24]</p>
+      <label><input type="radio" name="q5" value="A"> A) Entrevistas a profundidad.</label>
+      <label><input type="radio" name="q5" value="B"> B) Observación participante en el aula.</label>
+      <label><input type="radio" name="q5" value="C"> C) Pruebas de conocimiento (pretest y postest). [cite: 8, 16, 24]</label>
+      <label><input type="radio" name="q5" value="D"> D) Grupos de discusión.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Cuál fue el resultado más significativo en el rendimiento académico de los estudiantes después de la aplicación de la estrategia del rompecabezas? [cite: 9, 17, 25]</p>
+      <label><input type="radio" name="q6" value="A"> A) No se observaron cambios significativos.</label>
+      <label><input type="radio" name="q6" value="B"> B) Una ligera disminución en las calificaciones.</label>
+      <label><input type="radio" name="q6" value="C"> C) Un aumento significativo en la media de las calificaciones del postest. [cite: 9, 17, 25]</label>
+      <label><input type="radio" name="q6" value="D"> D) Solo mejoraron los estudiantes con bajo rendimiento.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Qué porcentaje de estudiantes manifestó una percepción positiva sobre la estrategia del rompecabezas, calificándola como muy buena o excelente? [cite: 9, 17, 25]</p>
+      <label><input type="radio" name="q7" value="A"> A) Menos del 50%.</label>
+      <label><input type="radio" name="q7" value="B"> B) Alrededor del 65%.</label>
+      <label><input type="radio" name="q7" value="C"> C) Más del 80%. [cite: 9, 17, 25]</label>
+      <label><input type="radio" name="q7" value="D"> D) Exactamente el 75%.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. Según los resultados del estudio, ¿qué impacto tuvo la implementación del rompecabezas en la motivación de los estudiantes hacia el cálculo? [cite: 10, 18, 26]</p>
+      <label><input type="radio" name="q8" value="A"> A) La motivación disminuyó debido a la complejidad.</label>
+      <label><input type="radio" name="q8" value="B"> B) Aumentó significativamente la motivación y el interés. [cite: 10, 18, 26]</label>
+      <label><input type="radio" name="q8" value="C"> C) No hubo cambios notables en la motivación.</label>
+      <label><input type="radio" name="q8" value="D"> D) La motivación solo mejoró en los estudiantes con rendimiento inicial alto.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. Además de mejorar el aprendizaje del cálculo, ¿qué otra habilidad o competencia fundamental se reforzó en los estudiantes mediante el uso del rompecabezas? [cite: 10, 18, 26]</p>
+      <label><input type="radio" name="q9" value="A"> A) La memorización de teoremas.</label>
+      <label><input type="radio" name="q9" value="B"> B) El pensamiento crítico y la capacidad de resolución de problemas. [cite: 10, 18, 26]</label>
+      <label><input type="radio" name="q9" value="C"> C) Habilidades de lectura rápida.</label>
+      <label><input type="radio" name="q9" value="D"> D) La habilidad para dibujar gráficos complejos.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. ¿Cuál es una de las recomendaciones clave que se desprende del estudio para futuras implementaciones de la estrategia del rompecabezas? [cite: 11, 19, 27]</p>
+      <label><input type="radio" name="q10" value="A"> A) Limitar el uso de rompecabezas a temas muy específicos del cálculo.</label>
+      <label><input type="radio" name="q10" value="B"> B) Explorar la combinación del rompecabezas con otras estrategias didácticas para potenciar aún más el aprendizaje. [cite: 11, 19, 27]</label>
+      <label><input type="radio" name="q10" value="C"> C) Utilizar exclusivamente rompecabezas físicos en lugar de digitales.</label>
+      <label><input type="radio" name="q10" value="D"> D) Reducir el tiempo de aplicación de la estrategia para evitar el aburrimiento.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  (function() { // Wrapped in IIFE to prevent re-declaration errors
+    const answers = {
+      q1: "A", // Page 2, Resumen: "Este artículo se enfoca en el aprendizaje basado en el juego y el uso de las Tecnologías de la Información y la Comunicación (TIC) para mejorar las habilidades y aprendizaje de las matemáticas universitarias."
+      q2: "B", // Page 2, Resumen: "Para ello, se pretende validar una técnica de aula llamada "El Rompecabezas"..."
+      q3: "B", // Page 2, Resumen: "...en estudiantes de ingeniería industrial desde las asignaturas cálculo diferencial e integral..."
+      q4: "C", // Page 2, Resumen: "...apoyado en el aprendizaje activo y colaborativo."
+      q5: "B", // Page 2, Resumen: "...el ganador tuvo un incentivo académico."
+      q6: "C", // Page 2, Resumen: "En este artículo se implementó un estudio cuasiexperimental..."
+      q7: "C", // Page 2, Resumen: "...aplicando un pretest y postest para evaluar la efectividad de la técnica en el aula."
+      q8: "C", // Page 2, Resumen: "Se utilizó, además, una muestra intencional con un total de N=178 estudiantes..."
+      q9: "C", // Page 2, Resumen: "...se utilizó el software estadístico SPSS Statistics versión 25..."
+      q10: "C" // Page 2, Resumen: "Los resultados del pretest y postest refieren diferencias e indican que la aplicación de la técnica de aula "El Rompecabezas" mejora significativamente el aprendizaje del proceso de derivación e integración."
+    };
+
+    /**
+     * Checks the user's answers, calculates the score, and provides feedback.
+     * Disables the submit button after submission.
+     */
+    function checkAnswers() {
+      let score = 0;
+      let allAnswered = true;
+
+      // Hide previous warning and clear feedback
+      document.getElementById("warningMessage").style.display = "none";
+      document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+      // Iterate through each question
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback${i}`);
+
+        if (!selected) {
+          // If a question is not answered, set flag and show specific warning
+          allAnswered = false;
+          feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+          feedbackDiv.className = "feedback incorrect";
+        } else {
+          // Check if the selected answer is correct
+          if (selected.value === answers[`q${i}`]) {
+            feedbackDiv.textContent = "✅ ¡Correcto!";
+            feedbackDiv.className = "feedback correct";
+            score++;
+          } else {
+            // Show incorrect feedback and the correct answer
+            feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+            feedbackDiv.className = "feedback incorrect";
+          }
+        }
+      }
+
+      // If not all questions are answered, show general warning and stop
+      if (!allAnswered) {
+          document.getElementById("warningMessage").style.display = "block";
+          return;
+      }
+
+      // Display the final result screen
+      const resultScreen = document.getElementById("finalResult");
+      resultScreen.style.display = "block";
+
+      resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+      if (score === 10) {
+        resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+      } else if (score >= 6) {
+        resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+      } else {
+        resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+      }
+
+      // Disable the submit button to prevent multiple submissions
+      document.getElementById("submitBtn").disabled = true;
+    }
+
+    /**
+     * Resets the quiz to its initial state, clearing selections and feedback.
+     * Re-enables the submit button.
+     */
+    function resetQuiz() {
+      // Clear all feedback messages
+      document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+      // Uncheck all radio buttons
+      document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+      // Hide the final result screen
+      document.getElementById("finalResult").style.display = "none";
+      document.getElementById("warningMessage").style.display = "none";
+      // Re-enable the submit button
+      document.getElementById("submitBtn").disabled = false;
+    }
+
+    // Add event listeners once the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+      document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+      document.getElementById("closeBtn").addEventListener('click', () => window.close());
+    });
+  })(); // End of IIFE
+</script>
+</body>
+</html>

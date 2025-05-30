@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - El Diario de Aprendizajes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilos para el botón de enviar respuestas */
+    #submitBtn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #4CAF50; /* Verde */
+      color: white; /* Texto blanco para contraste */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submitBtn:hover {
+      background-color: #388E3C; /* Verde más oscuro al pasar el ratón */
+    }
+
+    /* Estilos generales para otros botones si no tienen un ID específico */
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff; /* Color original para otros botones */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0; /* Color original de hover para otros botones */
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - El Diario de Aprendizajes</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Cuál es el propósito principal del "diario de aprendizajes" según el resumen del documento?</p>
+      <label><input type="radio" name="q1" value="A"> A) Registrar la asistencia a clase de los estudiantes.</label>
+      <label><input type="radio" name="q1" value="B"> B) Facilitar a los estudiantes el proceso de reflexión crítica para realizar su autoevaluación.</label>
+      <label><input type="radio" name="q1" value="C"> C) Evaluar el conocimiento teórico de los estudiantes mediante exámenes.</label>
+      <label><input type="radio" name="q1" value="D"> D) Servir como un registro de calificaciones final para el profesor.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Qué sistema de créditos y educación superior se menciona como contexto de los cambios en la universidad española?</p>
+      <label><input type="radio" name="q2" value="A"> A) Sistema de Créditos Americano (ACS) y Educación a Distancia (ED).</label>
+      <label><input type="radio" name="q2" value="B"> B) Espacio Europeo de Educación Superior (EEES) y European Credit Transfer System (ECTS).</label>
+      <label><input type="radio" name="q2" value="C"> C) Sistema de Evaluación Basado en Proyectos (SEBP) y Aprendizaje Colaborativo (AC).</label>
+      <label><input type="radio" name="q2" value="D"> D) Marco Nacional de Cualificaciones (MNC) y Formación Profesional (FP).</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. Según el documento, ¿qué tipo de cambios han sido "básicamente formales" en la universidad española?</p>
+      <label><input type="radio" name="q3" value="A"> A) Cambios en la metodología de enseñanza.</label>
+      <label><input type="radio" name="q3" value="B"> B) Cambios organizacionales y estructurales.</label>
+      <label><input type="radio" name="q3" value="C"> C) Cambios en el contenido de las asignaturas.</label>
+      <label><input type="radio" name="q3" value="D"> D) Cambios en la duración de las carreras universitarias.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué papel se requiere que asuman los docentes frente a la opción clásica de "transmisores y fiscalizadores" del conocimiento?</p>
+      <label><input type="radio" name="q4" value="A"> A) El papel de evaluadores exclusivos.</label>
+      <label><input type="radio" name="q4" value="B"> B) El papel de facilitadores.</label>
+      <label><input type="radio" name="q4" value="C"> C) El papel de únicos responsables del aprendizaje.</label>
+      <label><input type="radio" name="q4" value="D"> D) El papel de observadores pasivos.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿En qué formato digital se implementa el "diario de aprendizajes"?</p>
+      <label><input type="radio" name="q5" value="A"> A) Un documento de Word.</label>
+      <label><input type="radio" name="q5" value="B"> B) Una hoja de cálculo de Excel.</label>
+      <label><input type="radio" name="q5" value="C"> C) Una aplicación móvil.</label>
+      <label><input type="radio" name="q5" value="D"> D) Un archivo PDF interactivo.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Qué facilita el diario de aprendizajes al estudiante para la elaboración de su informe final de autoevaluación?</p>
+      <label><input type="radio" name="q6" value="A"> A) La memorización de fechas de entrega.</label>
+      <label><input type="radio" name="q6" value="B"> B) Poder tomar conciencia del trabajo realizado y sus progresos en competencias.</label>
+      <label><input type="radio" name="q6" value="C"> C) La comparación de su rendimiento con el de otros estudiantes.</label>
+      <label><input type="radio" name="q6" value="D"> D) La justificación de ausencias en clase.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Qué permite al docente el diario de aprendizaje en relación con las actividades planteadas en el proyecto?</p>
+      <label><input type="radio" name="q7" value="A"> A) Conocer únicamente las calificaciones finales.</label>
+      <label><input type="radio" name="q7" value="B"> B) Conocer la opinión y valoración de los estudiantes, y analizar la carga de trabajo.</label>
+      <label><input type="radio" name="q7" value="C"> C) Reducir la necesidad de retroalimentación individual.</label>
+      <label><input type="radio" name="q7" value="D"> D) Imponer un horario fijo para todas las actividades.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. En el "Apartado 1: Controlo mi asistencia a clase", ¿qué debe indicar el estudiante?</p>
+      <label><input type="radio" name="q8" value="A"> A) El número de horas de estudio individual.</label>
+      <label><input type="radio" name="q8" value="B"> B) Una valoración de 0 a 10 puntos de su participación en las actividades de enseñanza y aprendizaje.</label>
+      <label><input type="radio" name="q8" value="C"> C) Los temas que no ha comprendido.</label>
+      <label><input type="radio" name="q8" value="D"> D) Las fechas de los exámenes finales.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Cuál es una de las "Cinco Apuntes para la Reflexión" sobre la metodología universitaria?</p>
+      <label><input type="radio" name="q9" value="A"> A) Uniformar la metodología universitaria en base a las nuevas demandas del ECTS.</label>
+      <label><input type="radio" name="q9" value="B"> B) Un cambio de mentalidad en el profesorado y en los responsables universitarios.</label>
+      <label><input type="radio" name="q9" value="C"> C) Reducir la inversión en infraestructura educativa.</label>
+      <label><input type="radio" name="q9" value="D"> D) Mantener el individualismo en la docencia.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. Según el documento, ¿qué advertencia se hace sobre las herramientas pedagógicas como el diario de aprendizaje?</p>
+      <label><input type="radio" name="q10" value="A"> A) Que su utilización por sí sola garantiza la mejora de la docencia.</label>
+      <label><input type="radio" name="q10" value="B"> B) Que son solo herramientas y su utilización per se no mejora la docencia; los cambios se producen desde las finalidades.</label>
+      <label><input type="radio" name="q10" value="C"> C) Que solo son útiles para la autoevaluación y no para el docente.</label>
+      <label><input type="radio" name="q10" value="D"> D) Que siempre deben ser digitales para ser efectivas.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  (function() { // Wrapped in IIFE to prevent re-declaration errors
+    const answers = {
+      q1: "B", // Page 1, RESUMEN: "Dentro del proyecto: "formar docentes, formar personas", el diario de aprendizajes es uno de los instrumentos creados para facilitar a nuestros estudiantes el proceso de reflexión crítica de cara a realizar su autoevaluación."
+      q2: "B", // Page 2, INTRODUCCIÓN: "Llevamos cerca de una década inmersos en el nuevo lenguaje del Espacio Europeo de Educación Superior (EEES) y del European Credit Transfer System (ECTS)..."
+      q3: "B", // Page 2, INTRODUCCIÓN: "Podemos afirmar que los cambios han sido básicamente formales: organizacionales y estructurales."
+      q4: "B", // Page 2, INTRODUCCIÓN: "Se requiere un cambio de actitud y replantearse la necesidad de asumir el papel de facilitadores frente a la opción clásica de transmisores y fiscalizadores o calificadores..."
+      q5: "B", // Page 3, EL DIARIO DE APRENDIZAJES: "Es una herramienta digital, concretamente una hoja de cálculo de Excel, (Figura 1)..."
+      q6: "B", // Page 4, EL DIARIO DE APRENDIZAJES: "Lo que está facilitando al estudiante esta herramienta es poder tomar conciencia del trabajo realizado, facilitando la elaboración del informe final de autoevaluación que realiza al final del proyecto, en el que debe identificar sus progresos en el desarrollo de las competencias instrumentales y personales..."
+      q7: "B", // Page 4, EL DIARIO DE APRENDIZAJES: "En cuanto al docente, el diario de aprendizaje le va a permitir conocer la opinión y valoración de los estudiantes respecto a las actividades de enseñanza y aprendizaje planteadas en el proyecto. Esto significa que podemos valorar la carga de trabajo no presencial y el equilibrio con las tareas que complementan la formación en los tiempos de presencialidad."
+      q8: "B", // Page 4, Apartado 1: "Valora de 0 a 10 puntos tu participación en las clase del día (si no asistes a clase ese día debes poner un 0 en la casilla correspondiente)"
+      q9: "B", // Page 7, CINCO APUNTES PARA LA REFLEXIÓN: "Lo que si se hace necesario es un cambio de mentalidad en el profesorado y en los responsables universitarios."
+      q10: "B" // Page 7, CINCO APUNTES PARA LA REFLEXIÓN: "Las herramientas son sólo herramientas y no podemos inferir que su utilización per se, mejora la docencia. Los cambios se producen desde las finalidades que nos planteamos desde la mediación en el proceso de enseñanza y aprendizaje..."
+    };
+
+    /**
+     * Checks the user's answers, calculates the score, and provides feedback.
+     * Disables the submit button after submission.
+     */
+    function checkAnswers() {
+      let score = 0;
+      let allAnswered = true;
+
+      // Hide previous warning and clear feedback
+      document.getElementById("warningMessage").style.display = "none";
+      document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+      // Iterate through each question
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback${i}`);
+
+        if (!selected) {
+          // If a question is not answered, set flag and show specific warning
+          allAnswered = false;
+          feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+          feedbackDiv.className = "feedback incorrect";
+        } else {
+          // Check if the selected answer is correct
+          if (selected.value === answers[`q${i}`]) {
+            feedbackDiv.textContent = "✅ ¡Correcto!";
+            feedbackDiv.className = "feedback correct";
+            score++;
+          } else {
+            // Show incorrect feedback and the correct answer
+            feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+            feedbackDiv.className = "feedback incorrect";
+          }
+        }
+      }
+
+      // If not all questions are answered, show general warning and stop
+      if (!allAnswered) {
+          document.getElementById("warningMessage").style.display = "block";
+          return;
+      }
+
+      // Display the final result screen
+      const resultScreen = document.getElementById("finalResult");
+      resultScreen.style.display = "block";
+
+      resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+      if (score === 10) {
+        resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+      } else if (score >= 6) {
+        resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+      } else {
+        resultScreen.innerHTML += "<span style='color:#ef9a9a;'>  Sigue estudiando más.</span>";
+      }
+
+      // Disable the submit button to prevent multiple submissions
+      document.getElementById("submitBtn").disabled = true;
+    }
+
+    /**
+     * Resets the quiz to its initial state, clearing selections and feedback.
+     * Re-enables the submit button.
+     */
+    function resetQuiz() {
+      // Clear all feedback messages
+      document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+      // Uncheck all radio buttons
+      document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+      // Hide the final result screen
+      document.getElementById("finalResult").style.display = "none";
+      document.getElementById("warningMessage").style.display = "none";
+      // Re-enable the submit button
+      document.getElementById("submitBtn").disabled = false;
+    }
+
+    // Add event listeners once the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+      document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+      document.getElementById("closeBtn").addEventListener('click', () => window.close());
+    });
+  })(); // End of IIFE
+</script>
+</body>
+</html>

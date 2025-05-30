@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - ABP y Evaluación Formativa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0;
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png"
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - ABP y Evaluación Formativa</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. ¿Qué es la autoevaluación en el contexto de este estudio?</p>
+      <label><input type="radio" name="q1" value="A"> A) La calificación exclusiva por parte del profesor.</label>
+      <label><input type="radio" name="q1" value="B"> B) La responsabilidad de los estudiantes para monitorizar y juzgar su propio aprendizaje.</label>
+      <label><input type="radio" name="q1" value="C"> C) Un proceso donde solo se identifican los errores de los demás.</label>
+      <label><input type="radio" name="q1" value="D"> D) La asignación de una nota numérica sin reflexión.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Cuál es la principal diferencia entre coevaluación y evaluación entre iguales (peer-assessment) según el estudio?</p>
+      <label><input type="radio" name="q2" value="A"> A) Son sinónimos y se usan indistintamente.</label>
+      <label><input type="radio" name="q2" value="B"> B) La coevaluación es solo para profesores, la evaluación entre iguales para estudiantes.</label>
+      <label><input type="radio" name="q2" value="C"> C) El estudio aplica evaluación entre iguales con función formativa, no coevaluación en el sentido amplio.</label>
+      <label><input type="radio" name="q2" value="D"> D) La coevaluación es siempre sumativa, la evaluación entre iguales siempre formativa.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Qué porcentaje de la muestra total de estudiantes eran mujeres?</p>
+      <label><input type="radio" name="q3" value="A"> A) 42.5%</label>
+      <label><input type="radio" name="q3" value="B"> B) 57.5%</label>
+      <label><input type="radio" name="q3" value="C"> C) 94.2%</label>
+      <label><input type="radio" name="q3" value="D"> D) 5.8%</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Cuál fue la edad media de los estudiantes participantes en el estudio?</p>
+      <label><input type="radio" name="q4" value="A"> A) 18 años</label>
+      <label><input type="radio" name="q4" value="B"> B) 25 años</label>
+      <label><input type="radio" name="q4" value="C"> C) 19.15 años</label>
+      <label><input type="radio" name="q4" value="D"> D) No se especifica la edad media.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Qué herramienta 2.0 gratuita se utilizó para que los grupos de trabajo crearan un blog como portafolio del proyecto?</p>
+      <label><input type="radio" name="q5" value="A"> A) WordPress</label>
+      <label><input type="radio" name="q5" value="B"> B) Google Sites</label>
+      <label><input type="radio" name="q5" value="C"> C) Blogger</label>
+      <label><input type="radio" name="q5" value="D"> D) Wix</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <div class="question">
+      <p>6. ¿Qué software de edición de audio se recomendó a los estudiantes para el montaje de la entrevista radiofónica?</p>
+      <label><input type="radio" name="q6" value="A"> A) Adobe Audition</label>
+      <label><input type="radio" name="q6" value="B"> B) GarageBand</label>
+      <label><input type="radio" name="q6" value="C"> C) Audacity</label>
+      <label><input type="radio" name="q6" value="D"> D) FL Studio</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <div class="question">
+      <p>7. ¿Qué técnica de animación se pidió a los estudiantes para crear el vídeo promocional de la entrevista?</p>
+      <label><input type="radio" name="q7" value="A"> A) Stop motion</label>
+      <label><input type="radio" name="q7" value="B"> B) Animación 3D</label>
+      <label><input type="radio" name="q7" value="C"> C) Cut out</label>
+      <label><input type="radio" name="q7" value="D"> D) Motion graphics</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <div class="question">
+      <p>8. ¿Cuál fue el objetivo principal del cuestionario ad hoc aplicado a los estudiantes?</p>
+      <label><input type="radio" name="q8" value="A"> A) Calificar el desempeño individual de cada estudiante.</label>
+      <label><input type="radio" name="q8" value="B"> B) Conocer la percepción de los estudiantes sobre el proceso de evaluación formativa integrado en el ABP.</label>
+      <label><input type="radio" name="q8" value="C"> C) Medir el nivel de conocimiento sobre las TIC aplicadas a la educación.</label>
+      <label><input type="radio" name="q8" value="D"> D) Evaluar la calidad de las entrevistas radiofónicas realizadas.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <div class="question">
+      <p>9. ¿Cuál de los siguientes ítems del cuestionario obtuvo la mayor puntuación media?</p>
+      <label><input type="radio" name="q9" value="A"> A) "Me he sentido cómodo evaluando a otros compañeros."</label>
+      <label><input type="radio" name="q9" value="B"> B) "Evaluar a otros compañeros me ha parecido motivador."</label>
+      <label><input type="radio" name="q9" value="C"> C) "Conocer los criterios de evaluación desde el principio hace que sea más eficaz en el desarrollo del trabajo."</label>
+      <label><input type="radio" name="q9" value="D"> D) "Considero que con los procesos de autoevaluación y evaluación entre iguales la calificación es más justa que si solo evalúa el profesor."</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <div class="question">
+      <p>10. ¿Qué porcentaje de estudiantes se mostró de acuerdo o muy de acuerdo con que la calificación es más justa con autoevaluación y evaluación entre iguales que si solo evalúa el profesor?</p>
+      <label><input type="radio" name="q10" value="A"> A) 27.5%</label>
+      <label><input type="radio" name="q10" value="B"> B) 60%</label>
+      <label><input type="radio" name="q10" value="C"> C) 12%</label>
+      <label><input type="radio" name="q10" value="D"> D) 3.33%</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" id="submitBtn">✅ Enviar respuestas</button>
+      <button type="button" id="resetBtn">🔄 Reiniciar test</button>
+      <button type="button" id="closeBtn" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <div id="finalResult" class="result-screen"></div>
+
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B", // Page 4: "Podemos entender la autoevaluación como la responsabilidad de los estudiantes para monitorizar y realizar juicios sobre su propio aprendizaje..."
+    q2: "C", // Page 4: "En nuestro estudio vamos a aplicar la evaluación entre iguales (peer-assessment) más que una coevaluación (co-assessment)."
+    q3: "C", // Page 5: "un 94,2% (113) mujeres frente un 5,8% (7) de hombres."
+    q4: "C", // Page 5: "siendo su edad media 19,15 años."
+    q5: "C", // Page 5: "Para realizar el blog grupal se utilizó Blogger ya que se trata de una herramienta 2.0 gratuita y de fácil utilización."
+    q6: "C", // Page 6: "Se recomendó a los estudiantes que utilizasen Audacity, por ser un editor de audio de software libre."
+    q7: "C", // Page 6: "Se pidió a los estudiantes que crearan un vídeo promocional de la entrevista utilizando la técnica de animación Cut out."
+    q8: "B", // Page 4: "En definitiva, el objetivo de este artículo es conocer la percepción de los estudiantes sobre el proceso de evaluación formativa integrado dentro de un ABP."
+    q9: "C", // Page 7, Cuadro 1: "El ítem que mayor media obtiene (M=4,2q) es el que relaciona el conocimiento de los criterios de evaluación con la eficacia en el desarrollo del trabajo"
+    q10: "B" // Page 10, Figura 5: "Concretamente un 60% está de acuerdo o muy de acuerdo con que se obtiene una calificación final más justa que si únicamente es el profesor el que lleva a cabo la evaluación."
+  };
+
+  /**
+   * Checks the user's answers, calculates the score, and provides feedback.
+   * Disables the submit button after submission.
+   */
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    // Hide previous warning and clear feedback
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    // Iterate through each question
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        // If a question is not answered, set flag and show specific warning
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        // Check if the selected answer is correct
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          // Show incorrect feedback and the correct answer
+          feedbackDiv.textContent = `❌ Incorrecto. La respuesta correcta era: ${answers[`q${i}`]}.`;
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    // If not all questions are answered, show general warning and stop
+    if (!allAnswered) {
+        document.getElementById("warningMessage").style.display = "block";
+        return;
+    }
+
+    // Display the final result screen
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitBtn").disabled = true;
+  }
+
+  /**
+   * Resets the quiz to its initial state, clearing selections and feedback.
+   * Re-enables the submit button.
+   */
+  function resetQuiz() {
+    // Clear all feedback messages
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    // Uncheck all radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    // Hide the final result screen
+    document.getElementById("finalResult").style.display = "none";
+    // Hide any warning messages
+    document.getElementById("warningMessage").style.display = "none";
+    // Re-enable the submit button
+    document.getElementById("submitBtn").disabled = false;
+  }
+
+  // Add event listeners once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitBtn").addEventListener('click', checkAnswers);
+    document.getElementById("resetBtn").addEventListener('click', resetQuiz);
+    document.getElementById("closeBtn").addEventListener('click', () => window.close());
+  });
+</script>
+</body>
+</html>

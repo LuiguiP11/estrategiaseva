@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test - El Portafolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a; 
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    header h2 {
+      color: #2e7dff;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background-color: white;
+      color: #1a1a1a;
+      border-left: 6px solid #2e7dff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #e53935;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #2e7dff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5be0;
+    }
+
+    .btn-close {
+      background-color: #e53935 !important;
+    }
+
+    .btn-close:hover {
+      background-color: #c62828 !important;
+    }
+
+    .result-screen {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    .warning {
+      color: #ffcc00;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .author {
+      margin-top: 40px;
+      font-style: italic;
+      text-align: center;
+      color: #bbbbbb;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <img src="https://www.cunprogreso.edu.gt/phocadownloadpap/miniaturas-logotipos/8.png" 
+         alt="Logo Universidad">
+    <h2>Estrategias Pedagógicas de Evaluación</h2>
+  </header>
+
+  <h1>🧠 Test - El Portafolio</h1>
+
+  <form id="quizForm">
+
+    <!-- Pregunta 1 -->
+    <div class="question">
+      <p>1. ¿Cuál es uno de los objetivos principales del portafolio?</p>
+      <label><input type="radio" name="q1" value="A"> A) Evaluar únicamente tareas escritas.</label>
+      <label><input type="radio" name="q1" value="B"> B) Guiar a los estudiantes en su actividad y progresos.</label>
+      <label><input type="radio" name="q1" value="C"> C) Limitar la reflexión sobre el proceso de aprendizaje.</label>
+      <label><input type="radio" name="q1" value="D"> D) Sustituir el rol del profesor en la evaluación.</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="question">
+      <p>2. ¿Qué tipo de información puede incluir el portafolio?</p>
+      <label><input type="radio" name="q2" value="A"> A) Solo trabajos digitales.</label>
+      <label><input type="radio" name="q2" value="B"> B) Solo pruebas escritas.</label>
+      <label><input type="radio" name="q2" valor="C"> C) Información conceptual, procedimental y actitudinal.</label>
+      <label><input type="radio" name="q2" value="D"> D) Únicamente resultados de exámenes.</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="question">
+      <p>3. ¿En qué fase se seleccionan los mejores trabajos para incluirlos en el portafolio?</p>
+      <label><input type="radio" name="q3" value="A"> A) En la fase de recolección.</label>
+      <label><input type="radio" name="q3" value="B"> B) En la fase de revisión.</label>
+      <label><input type="radio" name="q3" value="C"> C) En la fase de selección.</label>
+      <label><input type="radio" name="q3" value="D"> D) En la fase de cierre.</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="question">
+      <p>4. ¿Cuál es una ventaja del portafolio como herramienta educativa?</p>
+      <label><input type="radio" name="q4" value="A"> A) Es impersonal y estandarizado.</label>
+      <label><input type="radio" name="q4" value="B"> B) No promueve la autonomía.</label>
+      <label><input type="radio" name="q4" value="C"> C) Desarrolla pensamiento crítico y reflexivo.</label>
+      <label><input type="radio" name="q4" value="D"> D) Requiere poca planificación.</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <!-- Pregunta 5 -->
+    <div class="question">
+      <p>5. ¿Qué implica el uso del portafolio electrónico?</p>
+      <label><input type="radio" name="q5" value="A"> A) Que solo se pueden incluir documentos de texto.</label>
+      <label><input type="radio" name="q5" value="B"> B) Uso exclusivo de imágenes fijas.</label>
+      <label><input type="radio" name="q5" value="C"> C) Inclusión de medios digitales como audio, video y gráficos.</label>
+      <label><input type="radio" name="q5" value="D"> D) Que no permite hipervínculos ni interacción.</label>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <!-- Pregunta 6 -->
+    <div class="question">
+      <p>6. ¿Cuál es una desventaja del portafolio como instrumento de evaluación?</p>
+      <label><input type="radio" name="q6" value="A"> A) Promueve la reflexión profunda.</label>
+      <label><input type="radio" name="q6" value="B"> B) Fomenta la personalización del aprendizaje.</label>
+      <label><input type="radio" name="q6" value="C"> C) Exige demasiada autodisciplina por parte del estudiante.</label>
+      <label><input type="radio" name="q6" value="D"> D) Facilita el trabajo colaborativo entre estudiantes.</label>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+
+    <!-- Pregunta 7 -->
+    <div class="question">
+      <p>7. ¿Qué elementos deben estar claros desde el inicio del portafolio?</p>
+      <label><input type="radio" name="q7" value="A"> A) Solo la cantidad de páginas.</label>
+      <label><input type="radio" name="q7" value="B"> B) Los criterios de evaluación y objetivos.</label>
+      <label><input type="radio" name="q7" value="C"> C) Las calificaciones finales.</label>
+      <label><input type="radio" name="q7" value="D"> D) La duración total del curso.</label>
+      <div class="feedback" id="feedback7"></div>
+    </div>
+
+    <!-- Pregunta 8 -->
+    <div class="question">
+      <p>8. ¿Qué debe incluir la estructura básica de un portafolio?</p>
+      <label><input type="radio" name="q8" value="A"> A) Solo resúmenes de libros.</label>
+      <label><input type="radio" name="q8" value="B"> B) Una guía o índice, introducción, desarrollo y clausura.</label>
+      <label><input type="radio" name="q8" value="C"> C) Solo preguntas sin respuestas.</label>
+      <label><input type="radio" name="q8" value="D"> D) Solo videos de clase.</label>
+      <div class="feedback" id="feedback8"></div>
+    </div>
+
+    <!-- Pregunta 9 -->
+    <div class="question">
+      <p>9. ¿Para qué sirve la fase de reflexión en el portafolio?</p>
+      <label><input type="radio" name="q9" value="A"> A) Para aumentar la carga de trabajo.</label>
+      <label><input type="radio" name="q9" value="B"> B) Para hacer más largas las tareas.</label>
+      <label><input type="radio" name="q9" value="C"> C) Para identificar puntos fuertes y débiles del proceso de aprendizaje.</label>
+      <label><input type="radio" name="q9" value="D"> D) Para evitar la retroalimentación docente.</label>
+      <div class="feedback" id="feedback9"></div>
+    </div>
+
+    <!-- Pregunta 10 -->
+    <div class="question">
+      <p>10. ¿Cuál es una característica del portafolio electrónico?</p>
+      <label><input type="radio" name="q10" value="A"> A) Solo se puede usar en papel.</label>
+      <label><input type="radio" name="q10" value="B"> B) Tiene soporte multimedia y permite hipervínculos.</label>
+      <label><input type="radio" name="q10" value="C"> C) No permite compartir con otros usuarios.</label>
+      <label><input type="radio" name="q10" value="D"> D) No tiene valor pedagógico.</label>
+      <div class="feedback" id="feedback10"></div>
+    </div>
+
+    <!-- Botones -->
+    <div class="button-group">
+      <button type="button" onclick="checkAnswers()">✅ Enviar respuestas</button>
+      <button type="button" onclick="resetQuiz()">🔄 Reiniciar test</button>
+      <button type="button" onclick="window.close()" class="btn-close">❌ Cerrar ventana</button>
+    </div>
+
+    <!-- Advertencia -->
+    <div id="warningMessage" class="warning">⚠️ Debes responder todas las preguntas antes de enviar.</div>
+
+    <!-- Resultado final -->
+    <div id="finalResult" class="result-screen"></div>
+
+    <!-- Autor -->
+    <div class="author">Lcda. Aura Natalia Fernández García</div>
+
+  </form>
+</div>
+
+<script>
+  const answers = {
+    q1: "B",
+    q2: "C",
+    q3: "C",
+    q4: "C",
+    q5: "C",
+    q6: "C",
+    q7: "B",
+    q8: "B",
+    q9: "C",
+    q10: "B"
+  };
+
+  function checkAnswers() {
+    let score = 0;
+    let allAnswered = true;
+
+    document.getElementById("warningMessage").style.display = "none";
+    document.querySelectorAll(".feedback").forEach(fb => fb.innerHTML = "");
+
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const feedbackDiv = document.getElementById(`feedback${i}`);
+
+      if (!selected) {
+        allAnswered = false;
+        feedbackDiv.textContent = "⚠️ Debes seleccionar una opción.";
+        feedbackDiv.className = "feedback incorrect";
+      } else {
+        if (selected.value === answers[`q${i}`]) {
+          feedbackDiv.textContent = "✅ ¡Correcto!";
+          feedbackDiv.className = "feedback correct";
+          score++;
+        } else {
+          feedbackDiv.textContent = "❌ Incorrecto. Inténtalo de nuevo.";
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+    }
+
+    if (!allAnswered) return;
+
+    const resultScreen = document.getElementById("finalResult");
+    resultScreen.style.display = "block";
+
+    resultScreen.innerHTML = `Obtuviste ${score} de 10 puntos.<br>`;
+    if (score === 10) {
+      resultScreen.innerHTML += "<span style='color:#a5d6a7;'>🎉 Excelente comprensión del tema.</span>";
+    } else if (score >= 6) {
+      resultScreen.innerHTML += "<span style='color:#fff176;'>🧠 Buen dominio del contenido.</span>";
+    } else {
+      resultScreen.innerHTML += "<span style='color:#ef9a9a;'>🚨 Sigue estudiando más.</span>";
+    }
+  }
+
+  function resetQuiz() {
+    document.querySelectorAll('.feedback').forEach(fb => fb.innerHTML = '');
+    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+    document.getElementById("finalResult").style.display = "none";
+    document.getElementById("warningMessage").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
