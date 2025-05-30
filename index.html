@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Página con 21 Botones</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1e1e2f;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      padding: 20px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mis 21 Botones</h1>
+
+  <div class="grid-container">
+    <!-- Aquí van los 21 botones con espacio para enlaces -->
+    
+    <a href="#" class="btn">Botón 1</a>
+    <a href="#" class="btn">Botón 2</a>
+    <a href="#" class="btn">Botón 3</a>
+    <a href="#" class="btn">Botón 4</a>
+    <a href="#" class="btn">Botón 5</a>
+    <a href="#" class="btn">Botón 6</a>
+    <a href="#" class="btn">Botón 7</a>
+    <a href="#" class="btn">Botón 8</a>
+    <a href="#" class="btn">Botón 9</a>
+    <a href="#" class="btn">Botón 10</a>
+    <a href="#" class="btn">Botón 11</a>
+    <a href="#" class="btn">Botón 12</a>
+    <a href="#" class="btn">Botón 13</a>
+    <a href="#" class="btn">Botón 14</a>
+    <a href="#" class="btn">Botón 15</a>
+    <a href="#" class="btn">Botón 16</a>
+    <a href="#" class="btn">Botón 17</a>
+    <a href="#" class="btn">Botón 18</a>
+    <a href="#" class="btn">Botón 19</a>
+    <a href="#" class="btn">Botón 20</a>
+    <a href="#" class="btn">Botón 21</a>
+  </div>
+
+</body>
+</html>
